@@ -1,47 +1,163 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-  font-family: Arial;
-  background: #f5f5f5;
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: linear-gradient(180deg, #f4f6f8 0%, #e8ecf1 100%);
+  min-height: 100vh;
   display: flex;
   justify-content: center;
-  padding: 50px;
+  align-items: center;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  color: #1f2937;
+}
+
+/* Éléments de décoration en arrière-plan */
+body::before {
+  content: '';
+  position: fixed;
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.65) 0%, transparent 65%);
+  border-radius: 50%;
+  top: -120px;
+  left: -120px;
+  pointer-events: none;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(148, 163, 184, 0.18) 0%, transparent 65%);
+  border-radius: 50%;
+  bottom: -90px;
+  right: -90px;
+  pointer-events: none;
 }
 
 article {
-  background: white;
-  padding: 20px;
-  border-radius: 16px;
-  width: 320px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(18px);
+  padding: 36px;
+  border-radius: 24px;
+  width: 100%;
+  max-width: 380px;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  box-shadow: 0 18px 45px rgba(100, 116, 139, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  position: relative;
+  z-index: 10;
 }
 
 article:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+  transform: translateY(-6px);
+  box-shadow: 0 24px 60px rgba(100, 116, 139, 0.15);
+  border-color: rgba(148, 163, 184, 0.3);
 }
 
+article:active {
+  transform: translateY(-2px);
+}
+
+/* Badges de priorité */
 [data-testid="test-todo-priority"] {
-  padding: 5px 10px;
+  padding: 7px 14px;
   border-radius: 999px;
-  background: #ffe0e0;
-  color: #d00000;
-  font-weight: bold;
-  font-size: 12px;
+  background: rgba(71, 85, 105, 0.12);
+  color: #334155;
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.25s ease, transform 0.25s ease;
 }
 
+[data-testid="test-todo-priority"]:hover {
+  transform: translateY(-1px);
+  background: rgba(71, 85, 105, 0.18);
+}
+
+/* Boutons sobres et élégants */
 button {
   border: none;
-  padding: 8px 12px;
-  border-radius: 8px;
+  padding: 10px 18px;
+  border-radius: 14px;
   cursor: pointer;
-  transition: 0.2s;
+  font-weight: 600;
+  font-size: 14px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+  background: rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  color: #111827;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
+  position: relative;
 }
 
 button:hover {
-  opacity: 0.8;
+  transform: translateY(-2px);
+  background: rgba(15, 23, 42, 0.12);
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.07);
+}
+
+button:focus-visible {
+  outline: 2px solid rgba(15, 23, 42, 0.18);
+  outline-offset: 3px;
+}
+
+/* Checkbox élégante */
+input[type="checkbox"] {
+  cursor: pointer;
+  accent-color: #334155;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  transition: box-shadow 0.2s ease;
+}
+
+input[type="checkbox"]:hover {
+  box-shadow: 0 0 9px rgba(51, 65, 85, 0.18);
 }
 
 input[type="checkbox"]:checked + label {
   text-decoration: line-through;
-  opacity: 0.6;
+  opacity: 0.72;
+  color: #475569;
+}
+
+label {
+  color: #102a43;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  cursor: pointer;
+}
+
+@media (max-width: 420px) {
+  body {
+    padding: 16px;
+  }
+
+  article {
+    padding: 28px;
+  }
+
+  button {
+    width: 100%;
+  }
 }
