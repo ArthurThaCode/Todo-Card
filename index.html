@@ -2,43 +2,107 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Todo Card</title>
+  <title>Todo Card - Stage 1A</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="index.css">
 </head>
 <body>
 
-<article data-testid="test-todo-card">
+<article data-testid="test-todo-card" class="todo-card" id="todoCard">
+  
+  <div class="view-mode" id="viewMode">
+    <div class="card-header">
+      <div class="title-wrapper">
+        <h2 data-testid="test-todo-title">Learn Frontend</h2>
+        <span class="status-badge" data-testid="test-todo-status">Pending</span>
+      </div>
+      <!-- Priority Indicator -->
+      <div class="priority-wrapper">
+        <span data-testid="test-todo-priority-indicator" class="priority-indicator"></span>
+        <span data-testid="test-todo-priority" class="priority-label">High</span>
+      </div>
+    </div>
 
-  <h2 data-testid="test-todo-title">Learn Frontend</h2>
+    <div class="description-container">
+      <div data-testid="test-todo-collapsible-section" class="collapsible-section collapsed">
+        <p data-testid="test-todo-description">
+          Create an interactive Todo Card for testing. This is a longer description to show how the expand and collapse functionality works on the advanced component. We want to make sure it handles truncation gracefully.
+        </p>
+      </div>
+      <button data-testid="test-todo-expand-toggle" class="expand-toggle" aria-expanded="false">
+        Show more
+      </button>
+    </div>
 
-  <p data-testid="test-todo-description">
-    Create an interactive Todo Card for testing.
-  </p>
+    <div class="metadata">
+      <div class="time-container">
+        <time data-testid="test-todo-due-date" datetime="2026-04-20T12:00">Apr 20, 2026, 12:00 PM</time>
+        <div class="time-status">
+          <span data-testid="test-todo-overdue-indicator" class="overdue-indicator hidden">Overdue</span>
+          <span data-testid="test-todo-time-remaining" class="time-remaining">Calculating...</span>
+        </div>
+      </div>
 
-  <span data-testid="test-todo-priority">High</span>
+      <ul data-testid="test-todo-tags" class="tags">
+        <li data-testid="test-todo-tag-frontend">frontend</li>
+        <li data-testid="test-todo-tag-learning">learning</li>
+      </ul>
+    </div>
 
-  <time data-testid="test-todo-due-date" datetime="2026-04-20">
-    Due Apr 20, 2026
-  </time>
+    <div class="controls">
+      <div class="status-control-wrapper">
+        <label>
+          <input type="checkbox" data-testid="test-todo-complete-toggle" id="completeToggle">
+          <span class="checkbox-custom"></span>
+          Completed
+        </label>
+        
+        <select data-testid="test-todo-status-control" id="statusSelect" class="status-select">
+          <option value="Pending">Pending</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Done">Done</option>
+        </select>
+      </div>
 
-  <p data-testid="test-todo-time-remaining">
-    Calculating...
-  </p>
+      <div class="actions">
+        <button data-testid="test-todo-edit-button" id="editBtn" class="btn-secondary">Edit</button>
+        <button data-testid="test-todo-delete-button" class="btn-danger">Delete</button>
+      </div>
+    </div>
+  </div>
 
-  <span data-testid="test-todo-status">In Progress</span>
+  <form data-testid="test-todo-edit-form" class="edit-mode hidden" id="editForm">
+    <div class="form-group">
+      <label for="editTitle">Title</label>
+      <input type="text" data-testid="test-todo-edit-title-input" id="editTitle" required>
+    </div>
 
-  <label>
-    <input type="checkbox" data-testid="test-todo-complete-toggle">
-    Completed
-  </label>
+    <div class="form-group">
+      <label for="editDescription">Description</label>
+      <textarea data-testid="test-todo-edit-description-input" id="editDescription" rows="4"></textarea>
+    </div>
 
-  <ul data-testid="test-todo-tags">
-    <li data-testid="test-todo-tag-frontend">frontend</li>
-    <li data-testid="test-todo-tag-learning">learning</li>
-  </ul>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="editPriority">Priority</label>
+        <select data-testid="test-todo-edit-priority-select" id="editPriority">
+          <option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="High">High</option>
+        </select>
+      </div>
 
-  <button data-testid="test-todo-edit-button">Edit</button>
-  <button data-testid="test-todo-delete-button">Delete</button>
+      <div class="form-group">
+        <label for="editDueDate">Due Date</label>
+        <input type="datetime-local" data-testid="test-todo-edit-due-date-input" id="editDueDate" required>
+      </div>
+    </div>
+
+    <div class="actions edit-actions">
+      <button type="button" data-testid="test-todo-cancel-button" id="cancelBtn" class="btn-secondary">Cancel</button>
+      <button type="submit" data-testid="test-todo-save-button" id="saveBtn" class="btn-primary">Save Changes</button>
+    </div>
+  </form>
 
 </article>
 
